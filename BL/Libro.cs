@@ -13,7 +13,6 @@ namespace BL
 {
     public class LibroBL
     {
-        // ================= INSERTAR ===================
         public static ML.Result Add(int idAutor, string tituloLibro, int fechaPublicacion, int idEditorial)
         {
             ML.Result result = new ML.Result();
@@ -36,7 +35,7 @@ namespace BL
             return result;
         }
 
-        // ================= POR AUTOR ===================
+     
         public static ML.Result GetByAutor(int idAutor)
         {
             ML.Result result = new ML.Result();
@@ -72,7 +71,7 @@ namespace BL
             return result;
         }
 
-        // ================= POR TITULO ===================
+    
         public static ML.Result GetByTitulo(string tituloLibro)
         {
             ML.Result result = new ML.Result();
@@ -108,7 +107,7 @@ namespace BL
             return result;
         }
 
-        // ================= POR FECHA ===================
+    
         public static ML.Result GetByFecha(int fechaPublicacion)
         {
             ML.Result result = new ML.Result();
@@ -145,7 +144,7 @@ namespace BL
             return result;
         }
 
-        // ================= POR EDITORIAL ===================
+      
         public static ML.Result GetByEditorial(int idEditorial)
         {
             ML.Result result = new ML.Result();
@@ -181,7 +180,7 @@ namespace BL
             return result;
         }
 
-        // ================= AUTOR Y FECHA ===================
+      
         public static ML.Result GetByAutorFecha(int idAutor, int fechaPublicacion)
         {
             ML.Result result = new ML.Result();
@@ -216,7 +215,7 @@ namespace BL
             return result;
         }
 
-        // ================= BORRAR POR AUTOR ===================
+      
         public static ML.Result DeleteByAutor(int idAutor)
         {
             ML.Result result = new ML.Result();
@@ -239,7 +238,7 @@ namespace BL
             return result;
         }
 
-        // ================= BORRAR POR EDITORIAL ===================
+      
         public static ML.Result DeleteByEditorial(int idEditorial)
         {
             ML.Result result = new ML.Result();
