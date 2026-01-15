@@ -87,7 +87,6 @@ namespace ApiRest.Controllers
             else
                 return BadRequest(result.ErrorMessage);
         }
-
         [HttpDelete]
         [Route("editorial/{idEditorial}")]
         public IHttpActionResult DeleteByEditorial(int idEditorial)
