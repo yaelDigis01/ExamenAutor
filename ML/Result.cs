@@ -22,6 +22,7 @@ namespace ML
 
         public List<object> Objects { get; set; }
 
-        public string Message { get; set; } 
+        public string Message { get; set; }
 
     }
+}
