@@ -88,7 +88,7 @@ namespace ApiRest.Controllers
                 return BadRequest(result.ErrorMessage);
         }
         [HttpDelete]
-        [Route("editorial/{idEditorial}")]
+        [Route("editorial/{idEditorial}")]  
         public IHttpActionResult DeleteByEditorial(int idEditorial)
         {
             var result = BL.LibroBL.DeleteByEditorial(idEditorial);
