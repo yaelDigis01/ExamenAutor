@@ -64,7 +64,7 @@ namespace ApiRest.Controllers
 
        
         [HttpGet]
-        [Route("autor/{idAutor}/fecha/{fechaPublicacion}")]
+        [Route("autor/{idAutor}/fecha/{fechaPublicacion}")] 
         public IHttpActionResult GetByAutorFecha(int idAutor, int fechaPublicacion)
         {
             var result = BL.LibroBL.GetByAutorFecha(idAutor, fechaPublicacion);
