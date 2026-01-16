@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ML.Libro>
+
+<h2>Sistema de Libros</h2>
+
+<!--buscar por autor -->
+@using (Html.BeginForm("BuscarPorAutor", "Get", FormMethod.Post))
+{
+    <input type="number" name="idAutor" placeholder="Id Autor" required />
+    <button type="submit">Buscar</button>
+}
+
+<!-- Buscar por Título -->
+@using (Html.BeginForm("BuscarPorTitulo", "Get", FormMethod.Post))
+{
+    <input type="text" name="titulo" placeholder="Título" required />
+    <button type="submit">Buscar</button>
+}
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <table border="1">
+        <tr>
+            <th>Título</th>
+            <th>Acción</th>
+        </tr>
+
+        @foreach (var libro in Model)
+        {
+            <tr>
+                <td>@libro.Titulo</td>
+                <td>
+                    @using (Html.BeginForm("Seleccionar", "Get", FormMethod.Post))
+                    {
+                        <input type="hidden" name="titulo" value="@libro.Titulo" />
+                        <button type="submit">Ver Detalle</button>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<hr />
+
+@if (ViewBag.LibroSeleccionado != null)
+{
+    var l = (ML.Libro)ViewBag.LibroSeleccionado;
+
+    <h3>Detalle del Libro</h3>
+    <p><b>Título:</b> @l.Titulo</p>
+    <p><b>Autor:</b> @(l.Autor != null ? l.Autor.NombreAutor : "N/A")</p>
+    <p><b>Editorial:</b> @(l.Editorial != null ? l.Editorial.NombreEditorial : "N/A")</p>
+    <p><b>Año:</b> @l.FechaPublicacion</p>
+}
+
+<hr />
+
+<!-- Alta -->
+@using (Html.BeginForm("Add", "Get", FormMethod.Post))
+{
+    <h3>Añadir un Libro</h3>
+    <input type="number" name="idAutor" placeholder="Id Autor" required />
+    <br />
+    <input type="text" name="titulo" placeholder="Título" required />
+    <br />
+    <input type="number" name="fechaPublicacion" placeholder="Año" required />
+    <br />
+    <input type="number" name="idEditorial" placeholder="Id Editorial" required />
+    <br />
+    <button type="submit">Guardar</button>
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <p style="color:green">@ViewBag.Mensaje</p>
+}
