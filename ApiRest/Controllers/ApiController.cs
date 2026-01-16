@@ -40,7 +40,7 @@ namespace ApiRest.Controllers
        
         [HttpGet]
         [Route("titulo/{titulo}")]
-        public IHttpActionResult GetByTitulo(string titulo)
+        public IHttpActionResult GetByTitulo(string titulo) 
         {
             var result = BL.LibroBL.GetByTitulo(titulo);
 
