@@ -14,7 +14,7 @@ namespace BL
 
             try
             {
-                using (DL.BibliotecaEntities context = new DL.BibliotecaEntities())
+                using (DL.BibliotecaEntities context = new DL.BibliotecaEntities()) 
                 {
                     context.LibroInsertar(idAutor, tituloLibro, fechaPublicacion, idEditorial);
                     result.Correct = true;
