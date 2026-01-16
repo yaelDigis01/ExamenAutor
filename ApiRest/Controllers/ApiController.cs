@@ -51,7 +51,7 @@ namespace ApiRest.Controllers
         }
 
         [HttpGet]
-        [Route("editorial/{idEditorial}")]
+        [Route("editorial/{idEditorial}")] 
         public IHttpActionResult GetByEditorial(int idEditorial)
         {
             var result = BL.LibroBL.GetByEditorial(idEditorial);
