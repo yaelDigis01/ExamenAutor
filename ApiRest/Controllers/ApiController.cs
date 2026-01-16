@@ -77,7 +77,7 @@ namespace ApiRest.Controllers
 
       
         [HttpDelete]
-        [Route("autor/{idAutor}")]
+        [Route("autor/{idAutor}")]  
         public IHttpActionResult DeleteByAutor(int idAutor)
         {
             var result = BL.LibroBL.DeleteByAutor(idAutor);
