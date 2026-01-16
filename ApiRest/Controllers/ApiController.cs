@@ -27,7 +27,7 @@ namespace ApiRest.Controllers
 
         [HttpGet]
         [Route("autor/{idAutor}")]
-        public IHttpActionResult GetByAutor(int idAutor)
+        public IHttpActionResult GetByAutor(int idAutor) 
         {
             var result = BL.LibroBL.GetByAutor(idAutor);
 
