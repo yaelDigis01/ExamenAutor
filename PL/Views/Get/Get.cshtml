@@ -1,0 +1,152 @@
+﻿
+
+@model IEnumerable<ML.Libro>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        background-color: #f9f9f9;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    input {
+        padding: 6px;
+        width: 250px;
+    }
+
+    button {
+        padding: 6px 12px;
+        cursor: pointer;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #eee;
+        }
+
+    .success {
+        color: green;
+        font-weight: bold;
+    }
+</style>
+
+<h2>Libros</h2>
+
+<div class="card">
+    <h3>Buscar Libros</h3>
+
+    <!-- Buscar por Autor -->
+    @using (Html.BeginForm("BuscarPorAutor", "Get", FormMethod.Post))
+    {
+        <div class="form-group">
+            <input type="number" name="idAutor" placeholder="Id Autor" required />
+            <button type="submit">Buscar por Autor</button>
+        </div>
+    }
+
+    <!-- Buscar por Título -->
+    @using (Html.BeginForm("BuscarPorTitulo", "Get", FormMethod.Post))
+    {
+        <div class="form-group">
+            <input type="text" name="titulo" placeholder="Título" required />
+            <button type="submit">Buscar por Título</button>
+        </div>
+    }
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="card">
+        <h3>Resultados</h3>
+
+        <table>
+            <tr>
+                <th>Título</th>
+                <th>Acción</th>
+            </tr>
+
+            @foreach (var libro in Model)
+            {
+                <tr>
+                    <td>@libro.Titulo</td>
+                    <td>
+                        @using (Html.BeginForm("Seleccionar", "Get", FormMethod.Post))
+                        {
+                            <input type="hidden" name="titulo" value="@libro.Titulo" />
+                            <button type="submit">Ver más detalles</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+
+@if (ViewBag.LibroSeleccionado != null)
+{
+    var l = (ML.Libro)ViewBag.LibroSeleccionado;
+
+    <div class="card">
+        <h3>Detalle del Libro</h3>
+        <p><b>Título:</b> @l.Titulo</p>
+        <p><b>Autor:</b> @(l.Autor != null ? l.Autor.NombreAutor : "N/A")</p>
+        <p><b>Editorial:</b> @(l.Editorial != null ? l.Editorial.NombreEditorial : "N/A")</p>
+        <p><b>Año:</b> @l.FechaPublicacion</p>
+    </div>
+}
+
+<div class="card">
+    <h3>Añadir un nuevo  Libro</h3>
+
+    @using (Html.BeginForm("Add", "Get", FormMethod.Post))
+    {
+        <div class="form-group">
+            <input type="number" name="idAutor" placeholder="Id Autor" required />
+        </div>
+
+        <div class="form-group">
+            <input type="text" name="titulo" placeholder="Título" required />
+        </div>
+
+        <div class="form-group">
+            <input type="number" name="fechaPublicacion" placeholder="Año de publicación" required />
+        </div>
+
+        <div class="form-group">
+            <input type="number" name="idEditorial" placeholder="Id Editorial" required />
+        </div>
+
+        <button type="submit">Guardar Libro</button>
+    }
+</div>
+
+@if (ViewBag.Mensaje != null)
+{
+    <p class="success">@ViewBag.Mensaje</p>
+}
